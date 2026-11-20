@@ -19,8 +19,18 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN")
 if not BOT_TOKEN:
     logger.error("BOT_TOKEN is missing!")
     sys.exit(1)
+API_ID = os.environ.get("API_ID")
+API_HASH = os.environ.get("API_HASH")
+if not API_ID or not API_HASH:
+    logger.error("API_ID or API_HASH is missing!")
+    sys.exit(1)
 
-app = Client("rakib_yt_bypass", bot_token=BOT_TOKEN)
+app = Client(
+    "rakib_yt_bypass",
+    api_id=int(API_ID),
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN,
+)
 
 def run_ffmpeg_command(cmd):
     """Helper function to run FFmpeg commands robustly"""
